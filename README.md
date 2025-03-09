@@ -11,8 +11,8 @@ This is a **RESTful API** for a **Library Management System**, built using **Lar
 ## 🚀 Installation & Setup
 ### 1️⃣ **Clone the Repository** (If hosted on GitHub)
 ```sh
-git clone https://github.com/yourusername/library-api.git
-cd library-api
+git clone https://github.com/zulkamalazahri/myLibrary
+cd myLibrary
 ```
 
 ### 2️⃣ **Install Dependencies**
@@ -30,7 +30,7 @@ composer install
   DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
   DB_PORT=3306
-  DB_DATABASE=library_db
+  DB_DATABASE=myLibrary
   DB_USERNAME=root
   DB_PASSWORD=
   ```
@@ -45,6 +45,23 @@ php artisan migrate
 php artisan serve
 ```
 Your API will now be available at: `http://127.0.0.1:8000/api`
+
+---
+
+## 📌 ISBN Validation Rules
+This system enforces the following ISBN validation rules:
+- **Books with the same ISBN must have the same title and author.**
+- **Books with different ISBN can have the same or different titles and authors.**
+- **Multiple copies of books with the same ISBN are allowed, but they must have the same title and author.**
+
+If a book with an existing ISBN is registered but has a different title or author, the system will return an error.
+
+Example response for an invalid book registration, same ISBN but different title and author:
+```json
+{
+  "message": "Books with the same ISBN must have the same title and author"
+}
+```
 
 ---
 
@@ -63,16 +80,6 @@ To update all dependencies to the latest versions:
 composer update
 ```
 
-### **Installing Additional Packages**
-If you need to install a new package, use:
-```sh
-composer require package-name
-```
-For example, to install Guzzle (HTTP client for Laravel):
-```sh
-composer require guzzlehttp/guzzle
-```
-
 Composer ensures that all dependencies are properly managed and versioned within your Laravel project.
 
 ---
@@ -83,8 +90,8 @@ This project includes **PHPUnit tests** to verify API functionality.
 ### **1️⃣ Set Up the Test Database**
 1. Create a separate test database in **phpMyAdmin** (`http://localhost/phpmyadmin`):
     - **Database Name:** `myLibrary_test`
-    - **Collation:** `utf8mb4_general_ci`
-2. Update **`.env.testing`** file:
+    - **Collation:** `utf8mb4_0900_ai_ci`
+2. Create and Update **`.env.testing`** file:
    ```env
    APP_ENV=testing
    DB_CONNECTION=mysql
@@ -129,8 +136,8 @@ PASS  Tests\Feature\BorrowTest
 - **Request Body:**
   ```json
   {
-    "name": "John Doe",
-    "email": "john@example.com"
+    "name": "Zul Kamal",
+    "email": "zulkamal@gmail.com"
   }
   ```
 - **Response:**
@@ -139,8 +146,8 @@ PASS  Tests\Feature\BorrowTest
     "message": "Borrower registered successfully",
     "data": {
       "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
+      "name": "Zul Kamal",
+      "email": "zulkamal@gamil.com",
       "created_at": "2024-03-07T12:00:00.000000Z",
       "updated_at": "2024-03-07T12:00:00.000000Z"
     }
@@ -152,9 +159,9 @@ PASS  Tests\Feature\BorrowTest
 - **Request Body:**
   ```json
   {
-    "isbn": "978-3-16-148410-0",
-    "title": "Laravel for Beginners",
-    "author": "Jane Doe"
+    "isbn": "978-0-7475-3269-8",
+    "title": "I Love Programming",
+    "author": "Zul Kamal"
   }
   ```
 
@@ -195,8 +202,7 @@ PASS  Tests\Feature\BorrowTest
 ---
 
 ## ✅ **Next Steps**
-- **Test the API using Postman or Insomnia**
-- **Deploy the API if needed** (e.g., Laravel Forge, Heroku, DigitalOcean)
+- **For Manual Testing, Test the API using Postman or Insomnia**
 
-🎉 **Enjoy building with Laravel!** 🚀
+🎉 **-- The End--** 🚀
 

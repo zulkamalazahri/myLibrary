@@ -17,19 +17,27 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        // Validate request data
         $request->validate([
-            'isbn'   => 'required|string|unique:books',
-            'title'  => 'required|string',
+            'isbn' => 'required|string',
+            'title' => 'required|string',
             'author' => 'required|string',
         ]);
 
-        // Create a new book
-        $book = Book::create($request->all());
+        // Check if ISBN already exists
+        $existingBook = Book::where('isbn', $request->isbn)->first();
 
-        return response()->json([
-            'message' => 'Book registered successfully',
-            'data' => $book
-        ], 201);
+        if ($existingBook) {
+            // Ensure the title & author are the same
+            if ($existingBook->title !== $request->title || $existingBook->author !== $request->author) {
+                return response()->json([
+                    'message' => 'Books with the same ISBN must have the same title and author'
+                ], 400);
+            }
+        }
+
+        // Allow multiple copies of the same book
+        Book::create($request->all());
+
+        return response()->json(['message' => 'Book registered successfully']);
     }
 }
