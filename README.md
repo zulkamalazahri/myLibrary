@@ -9,7 +9,7 @@ This is a **RESTful API** for a **Library Management System**, built using **Lar
 - Return books
 
 ## 🚀 Installation & Setup
-### 1️⃣ **Clone the Repository** (If hosted on GitHub)
+### 1️⃣ **Clone the Repository**
 ```sh
 git clone https://github.com/zulkamalazahri/myLibrary
 cd myLibrary
