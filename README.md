@@ -147,7 +147,7 @@ PASS  Tests\Feature\BorrowTest
     "data": {
       "id": 1,
       "name": "Zul Kamal",
-      "email": "zulkamal@gamil.com",
+      "email": "zulkamal@gmail.com",
       "created_at": "2024-03-07T12:00:00.000000Z",
       "updated_at": "2024-03-07T12:00:00.000000Z"
     }
@@ -172,9 +172,9 @@ PASS  Tests\Feature\BorrowTest
   [
     {
       "id": 1,
-      "isbn": "978-3-16-148410-0",
-      "title": "Laravel for Beginners",
-      "author": "Jane Doe"
+      "isbn": "978-0-7475-3269-8",
+      "title": "I Love Programming",
+      "author": "Zul Kamal"
     }
   ]
   ```
